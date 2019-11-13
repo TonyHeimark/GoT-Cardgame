@@ -1,0 +1,40 @@
+.board {
+  position: relative;
+  min-height: 100vh;
+
+  &__tiles {
+    padding-top: 125px;
+    width: 50%;
+    min-width: 700px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 50px;
+  }
+
+  &__tile {
+    width: 70px;
+    height: 70px;
+    background-color: rgb(161, 161, 161);
+    display: inline-block;
+  }
+
+  &__characters {
+    position: absolute;
+    right: 0;
+    top: 50px;
+  }
+
+  &__dice {
+    font-size: 4rem;
+    margin-top: 50px;
+  }
+
+  &__button {
+    width: 300px;
+    font-size: 1.4rem;
+    padding: 10px 20px;
+    background: lightblue;
+    margin: 50px;
+    border: none;
+  }
+}

@@ -1,0 +1,47 @@
+.character {
+  margin: 0 auto;
+  background: url("../../assets/images/SVG/card.svg") no-repeat;
+  background-size: contain;
+  padding: 30px 20px;
+  max-width: 250px;
+
+  &--onboard {
+    width: 250px;
+  }
+  &__container {
+    text-align: center;
+  }
+
+  &__name {
+    display: block;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  &__image {
+    height: 200px;
+    width: 200px;
+    margin-bottom: 20px;
+  }
+
+  &__buttons {
+    width: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__button {
+    border: none;
+    background: #3e3434;
+    color: white;
+    border-radius: 10px;
+    min-width: 100px;
+    padding: 10px 20px;
+    cursor: pointer;
+
+    &:hover {
+      background: #000;
+    }
+  }
+}
