@@ -2,6 +2,9 @@ import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { PlayerContext } from "../contexts/playerContextProvider";
 
+import house1 from "../assets/images/SVG/house1.svg";
+import house2 from "../assets/images/SVG/house2.svg";
+
 const Character = props => {
   const character = props.item;
   const { firstName, lastName, charImg } = character;
@@ -18,7 +21,7 @@ const Character = props => {
         turn: false,
         character,
         tile: 1,
-        house: <span>Player1</span>
+        house: <img src={house1} alt="player 1" />
       }));
       setPlayer2(prevState => ({
         ...prevState,
@@ -30,7 +33,7 @@ const Character = props => {
         turn: false,
         character,
         tile: 1,
-        house: <span>Player2</span>
+        house: <img src={house2} alt="player 2" />
       }));
       setPlayer1(prevState => ({
         ...prevState,
