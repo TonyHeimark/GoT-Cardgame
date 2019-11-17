@@ -1,9 +1,10 @@
 .board {
+  padding: 0 4%;
   position: relative;
   min-height: 100vh;
 
   &__tiles {
-    padding-top: 125px;
+    padding-top: 50px;
     width: 50%;
     min-width: 700px;
     display: grid;
@@ -27,6 +28,7 @@
   &__dice {
     font-size: 4rem;
     margin-top: 50px;
+    display: inline;
   }
 
   &__button {
@@ -36,5 +38,6 @@
     background: lightblue;
     margin: 50px;
     border: none;
+    display: inline;
   }
 }

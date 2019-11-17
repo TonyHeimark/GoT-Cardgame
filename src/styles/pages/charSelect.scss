@@ -1,6 +1,11 @@
-.characters {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  margin: 100px auto;
-  grid-gap: 100px;
+.character-select {
+  padding: 0 4%;
+
+  &__characters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin: 100px auto 0;
+    grid-gap: 100px;
+    padding-bottom: 100px;
+  }
 }
