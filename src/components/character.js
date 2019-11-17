@@ -1,14 +1,14 @@
-import React, { useContext, useState } from "react";
-import { Redirect } from "react-router-dom";
-import { PlayerContext } from "../contexts/playerContextProvider";
+import React, { useContext, useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { PlayerContext } from '../contexts/playerContextProvider';
 
-import house1 from "../assets/images/SVG/house1.svg";
-import house2 from "../assets/images/SVG/house2.svg";
+import house1 from '../assets/images/SVG/house1.svg';
+import house2 from '../assets/images/SVG/house2.svg';
 
 const Character = props => {
   const character = props.item;
   const { firstName, lastName, charImg } = character;
-  const fullName = `${firstName ? firstName : ""} ${lastName ? lastName : ""}`;
+  const fullName = `${firstName ? firstName : ''} ${lastName ? lastName : ''}`;
 
   const [redirect, setRedirect] = useState(false);
 
@@ -21,7 +21,13 @@ const Character = props => {
         turn: false,
         character,
         tile: 1,
-        house: <img src={house1} alt="player 1" />
+        house: (
+          <img
+            className="character__house1"
+            src={character.charImg}
+            alt="player 1"
+          />
+        )
       }));
       setPlayer2(prevState => ({
         ...prevState,
@@ -33,7 +39,13 @@ const Character = props => {
         turn: false,
         character,
         tile: 1,
-        house: <img src={house2} alt="player 2" />
+        house: (
+          <img
+            className="character__house2"
+            src={character.charImg}
+            alt="player 2"
+          />
+        )
       }));
       setPlayer1(prevState => ({
         ...prevState,
@@ -52,12 +64,17 @@ const Character = props => {
         <span className="character__name">{fullName}</span>
         <img
           className="character__image"
-          src={charImg ? charImg : ""}
+          src={charImg ? charImg : ''}
           alt={fullName}
         />
       </div>
       <div className="character__buttons">
-        <button className="character__button">See more</button>
+        <button
+          onClick={props.handleModalCharacter}
+          className="character__button"
+        >
+          See more
+        </button>
 
         <button onClick={handleSelect} className="character__button">
           Select

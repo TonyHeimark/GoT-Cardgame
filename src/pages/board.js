@@ -23,174 +23,6 @@ const Board = props => {
     dice = Math.floor(Math.random() * 6) + 1;
     handlePlayer();
   };
-
-  // handle tile effects
-  useEffect(() => {
-    if (
-      player1Tile === trapTiles[0] ||
-      player1Tile === trapTiles[1] ||
-      player1Tile === trapTiles[2] ||
-      player1Tile === trapTiles[3] ||
-      player1Tile === trapTiles[4] ||
-      player1Tile === ladderTiles[0] ||
-      player1Tile === ladderTiles[1] ||
-      player1Tile === ladderTiles[2]
-    ) {
-      if (player1Tile === trapTiles[0]) {
-        alert('trap1');
-        setPlayer1(prevState => ({
-          ...prevState,
-          tile: player1.tile - 2
-        }));
-      } else if (player1Tile === trapTiles[1]) {
-        alert('trap2');
-        setPlayer1(prevState => ({
-          ...prevState,
-          tile: player1.tile - 3
-        }));
-      } else if (player1Tile === trapTiles[2]) {
-        alert('trap3');
-        setPlayer1(prevState => ({
-          ...prevState,
-          tile: player1.tile - 4
-        }));
-      } else if (player1Tile === trapTiles[3]) {
-        alert('trap4');
-        setPlayer1(prevState => ({
-          ...prevState,
-          tile: 1
-        }));
-      } else if (player1Tile === trapTiles[4]) {
-        alert('trap5');
-        setPlayer1(prevState => ({
-          ...prevState,
-          tile: player1.tile - 10
-        }));
-      } else if (player1Tile === ladderTiles[0]) {
-        alert('ladder1');
-        setPlayer1(prevState => ({
-          ...prevState,
-          tile: player1.tile + 12
-        }));
-      } else if (player1Tile === ladderTiles[1]) {
-        alert('ladder2');
-        setPlayer1(prevState => ({
-          ...prevState,
-          tile: player1.tile + 4
-        }));
-      } else if (player1Tile === ladderTiles[2]) {
-        alert('ladder3');
-        setPlayer1(prevState => ({
-          ...prevState,
-          tile: player1.tile + 6
-        }));
-      }
-    }
-
-    if (
-      player2Tile === trapTiles[0] ||
-      player2Tile === trapTiles[1] ||
-      player2Tile === trapTiles[2] ||
-      player2Tile === trapTiles[3] ||
-      player2Tile === trapTiles[4] ||
-      player2Tile === ladderTiles[0] ||
-      player2Tile === ladderTiles[1] ||
-      player2Tile === ladderTiles[2]
-    ) {
-      if (player2Tile === trapTiles[0]) {
-        alert('trap1');
-        setPlayer2(prevState => ({
-          ...prevState,
-          tile: player2.tile - 2
-        }));
-      } else if (player2Tile === trapTiles[1]) {
-        alert('trap2');
-        setPlayer2(prevState => ({
-          ...prevState,
-          tile: player2.tile - 3
-        }));
-      } else if (player2Tile === trapTiles[2]) {
-        alert('trap3');
-        setPlayer2(prevState => ({
-          ...prevState,
-          tile: player2.tile - 4
-        }));
-      } else if (player2Tile === trapTiles[3]) {
-        alert('trap4');
-        setPlayer2(prevState => ({
-          ...prevState,
-          tile: 1
-        }));
-      } else if (player2Tile === trapTiles[4]) {
-        alert('trap5');
-        setPlayer2(prevState => ({
-          ...prevState,
-          tile: player2.tile - 10
-        }));
-      } else if (player2Tile === ladderTiles[0]) {
-        alert('ladder1');
-        setPlayer2(prevState => ({
-          ...prevState,
-          tile: player2.tile + 12
-        }));
-      } else if (player2Tile === ladderTiles[1]) {
-        alert('ladder2');
-        setPlayer2(prevState => ({
-          ...prevState,
-          tile: player2.tile + 4
-        }));
-      } else if (player2Tile === ladderTiles[2]) {
-        alert('ladder3');
-        setPlayer2(prevState => ({
-          ...prevState,
-          tile: player2.tile + 6
-        }));
-      }
-    }
-
-    // must hit exactly 30 to win, not over. bounces back from 30 if rolling above.
-    if (player1Tile > 30) {
-      const setBack = player1Tile - 30;
-      setPlayer1(prevState => ({
-        ...prevState,
-        tile: player1.tile - setBack - setBack
-      }));
-    }
-
-    if (player2Tile > 30) {
-      const setBack = player2Tile - 30;
-      setPlayer2(prevState => ({
-        ...prevState,
-        tile: player2.tile - setBack - setBack
-      }));
-    }
-
-    //victory handling
-    if (player1Tile === 30) {
-      setPlayer1(prevState => ({
-        ...prevState,
-        victory: true
-      }));
-
-      setPlayer2(prevState => ({
-        ...prevState,
-        victory: false
-      }));
-    }
-
-    if (player2Tile === 30) {
-      setPlayer2(prevState => ({
-        ...prevState,
-        victory: true
-      }));
-
-      setPlayer1(prevState => ({
-        ...prevState,
-        victory: false
-      }));
-    }
-  }, [player1Tile, player2Tile]);
-
   // handle turn exchange and tile update
   const handlePlayer = () => {
     if (player1.turn) {
@@ -230,16 +62,18 @@ const Board = props => {
           i === trapTiles[2] ||
           i === trapTiles[3] ||
           i === trapTiles[4] ? (
-            <img src={spider} alt="trap" />
+            <img className="board__trap" src={spider} alt="trap" />
           ) : null}
           {i === ladderTiles[0] ||
           i === ladderTiles[1] ||
           i === ladderTiles[2] ||
           i === ladderTiles[3] ||
           i === ladderTiles[4] ? (
-            <img src={ladder} alt="trap" />
+            <img className="board__ladder" src={ladder} alt="trap" />
           ) : null}
-          {i === 30 ? <img src={ironThrone} alt="iron throne" /> : null}
+          {i === 30 ? (
+            <img className="board__throne" src={ironThrone} alt="iron throne" />
+          ) : null}
           {player1.tile === i ? player1.house : null}
           {player2.tile === i ? player2.house : null}
         </div>
@@ -249,6 +83,175 @@ const Board = props => {
     tiles.reverse();
   };
   tilesGenerator();
+
+  // handle tile effects
+  useEffect(() => {
+    setTimeout(() => {
+      if (
+        player1Tile === trapTiles[0] ||
+        player1Tile === trapTiles[1] ||
+        player1Tile === trapTiles[2] ||
+        player1Tile === trapTiles[3] ||
+        player1Tile === trapTiles[4] ||
+        player1Tile === ladderTiles[0] ||
+        player1Tile === ladderTiles[1] ||
+        player1Tile === ladderTiles[2]
+      ) {
+        if (player1Tile === trapTiles[0]) {
+          alert('trap1');
+          setPlayer1(prevState => ({
+            ...prevState,
+            tile: player1.tile - 2
+          }));
+        } else if (player1Tile === trapTiles[1]) {
+          alert('trap2');
+          setPlayer1(prevState => ({
+            ...prevState,
+            tile: player1.tile - 3
+          }));
+        } else if (player1Tile === trapTiles[2]) {
+          alert('trap3');
+          setPlayer1(prevState => ({
+            ...prevState,
+            tile: player1.tile - 4
+          }));
+        } else if (player1Tile === trapTiles[3]) {
+          alert('trap4');
+          setPlayer1(prevState => ({
+            ...prevState,
+            tile: 1
+          }));
+        } else if (player1Tile === trapTiles[4]) {
+          alert('trap5');
+          setPlayer1(prevState => ({
+            ...prevState,
+            tile: player1.tile - 10
+          }));
+        } else if (player1Tile === ladderTiles[0]) {
+          alert('ladder1');
+          setPlayer1(prevState => ({
+            ...prevState,
+            tile: player1.tile + 12
+          }));
+        } else if (player1Tile === ladderTiles[1]) {
+          alert('ladder2');
+          setPlayer1(prevState => ({
+            ...prevState,
+            tile: player1.tile + 4
+          }));
+        } else if (player1Tile === ladderTiles[2]) {
+          alert('ladder3');
+          setPlayer1(prevState => ({
+            ...prevState,
+            tile: player1.tile + 6
+          }));
+        }
+      }
+
+      if (
+        player2Tile === trapTiles[0] ||
+        player2Tile === trapTiles[1] ||
+        player2Tile === trapTiles[2] ||
+        player2Tile === trapTiles[3] ||
+        player2Tile === trapTiles[4] ||
+        player2Tile === ladderTiles[0] ||
+        player2Tile === ladderTiles[1] ||
+        player2Tile === ladderTiles[2]
+      ) {
+        if (player2Tile === trapTiles[0]) {
+          setPlayer2(prevState => ({
+            ...prevState,
+            tile: player2.tile - 2
+          }));
+          alert('trap1');
+        } else if (player2Tile === trapTiles[1]) {
+          setPlayer2(prevState => ({
+            ...prevState,
+            tile: player2.tile - 3
+          }));
+          alert('trap2');
+        } else if (player2Tile === trapTiles[2]) {
+          setPlayer2(prevState => ({
+            ...prevState,
+            tile: player2.tile - 4
+          }));
+          alert('trap3');
+        } else if (player2Tile === trapTiles[3]) {
+          setPlayer2(prevState => ({
+            ...prevState,
+            tile: 1
+          }));
+          alert('trap4');
+        } else if (player2Tile === trapTiles[4]) {
+          setPlayer2(prevState => ({
+            ...prevState,
+            tile: player2.tile - 10
+          }));
+          alert('trap5');
+        } else if (player2Tile === ladderTiles[0]) {
+          setPlayer2(prevState => ({
+            ...prevState,
+            tile: player2.tile + 12
+          }));
+          alert('ladder1');
+        } else if (player2Tile === ladderTiles[1]) {
+          setPlayer2(prevState => ({
+            ...prevState,
+            tile: player2.tile + 4
+          }));
+          alert('ladder2');
+        } else if (player2Tile === ladderTiles[2]) {
+          setPlayer2(prevState => ({
+            ...prevState,
+            tile: player2.tile + 6
+          }));
+          alert('ladder3');
+        }
+      }
+
+      // must hit exactly 30 to win, not over. bounces back from 30 if rolling above.
+      if (player1Tile > 30) {
+        const setBack = player1Tile - 30;
+        setPlayer1(prevState => ({
+          ...prevState,
+          tile: player1.tile - setBack - setBack
+        }));
+      }
+
+      if (player2Tile > 30) {
+        const setBack = player2Tile - 30;
+        setPlayer2(prevState => ({
+          ...prevState,
+          tile: player2.tile - setBack - setBack
+        }));
+      }
+
+      //victory handling
+      if (player1Tile === 30) {
+        setPlayer1(prevState => ({
+          ...prevState,
+          victory: true
+        }));
+
+        setPlayer2(prevState => ({
+          ...prevState,
+          victory: false
+        }));
+      }
+
+      if (player2Tile === 30) {
+        setPlayer2(prevState => ({
+          ...prevState,
+          victory: true
+        }));
+
+        setPlayer1(prevState => ({
+          ...prevState,
+          victory: false
+        }));
+      }
+    }, 200);
+  }, [player1Tile, player2Tile]);
 
   return (
     <>

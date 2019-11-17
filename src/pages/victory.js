@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { PlayerContext } from '../contexts/playerContextProvider';
 import IronThrone from '../components/ironThrone';
 

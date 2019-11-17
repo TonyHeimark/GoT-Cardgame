@@ -5,11 +5,11 @@ import { Canvas, extend, useThree, useRender } from 'react-three-fiber';
 
 extend({ OrbitControls });
 
-const ThroneModel = () => {
+const CharModel = () => {
   const [model, setModel] = useState();
 
   useEffect(() => {
-    new GLTFLoader().load('/throne/scene.gltf', setModel);
+    new GLTFLoader().load('/character/scene.gltf', setModel);
   }, []);
 
   return model ? <primitive object={model.scene} /> : null;
@@ -35,20 +35,20 @@ const Controls = () => {
   );
 };
 
-const IronThrone = () => {
+const Char3d = () => {
   const checkBrowser = typeof window !== 'undefined';
 
   return (
     <>
       {checkBrowser && (
-        <Canvas camera={{ position: [1, 1, 3] }}>
+        <Canvas camera={{ position: [1, 1, 2.4] }}>
           <ambientLight intensity={4} />
           <Controls />
-          <ThroneModel />
+          <CharModel />
         </Canvas>
       )}
     </>
   );
 };
 
-export default IronThrone;
+export default Char3d;

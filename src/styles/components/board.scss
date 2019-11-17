@@ -2,6 +2,9 @@
   padding: 0 4%;
   position: relative;
   min-height: 100vh;
+  background: #2a2a2a;
+  //background: url('../../assets/images/gotmap2.jpg') no-repeat;
+  //background-size: cover;
 
   &__tiles {
     padding-top: 50px;
@@ -17,6 +20,7 @@
     height: 70px;
     background-color: rgb(161, 161, 161);
     display: inline-block;
+    position: relative;
   }
 
   &__characters {
@@ -27,17 +31,37 @@
 
   &__dice {
     font-size: 4rem;
-    margin-top: 50px;
     display: inline;
+    color: #efefef;
+    position: absolute;
+    left: 900px;
+    top: 300px;
   }
 
   &__button {
     width: 300px;
     font-size: 1.4rem;
     padding: 10px 20px;
-    background: lightblue;
-    margin: 50px;
+    background: #ccccc0;
+    margin: 50px auto;
     border: none;
     display: inline;
+  }
+
+  // tiles
+
+  &__trap {
+    background-color: firebrick;
+  }
+
+  &__ladder {
+    background-color: forestgreen;
+  }
+
+  &__throne {
+    position: absolute;
+    width: 110px;
+    top: -90px;
+    left: -18px;
   }
 }

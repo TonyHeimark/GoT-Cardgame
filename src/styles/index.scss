@@ -1,6 +1,12 @@
+@font-face {
+  font-family: game;
+  src: url('../assets/fonts/thrones.ttf');
+}
+
 @import './pages/charSelect';
 @import './components//header';
 @import './components/layout';
+@import './components/charModal.scss';
 @import './components/board';
 @import './components/victory';
 @import './components/character';
