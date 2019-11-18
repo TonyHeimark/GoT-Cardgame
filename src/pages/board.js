@@ -6,6 +6,7 @@ import { PlayerContext } from '../contexts/playerContextProvider';
 import spider from '../assets/images/SVG/spider-solid.svg';
 import ladder from '../assets/images/SVG/ladder.svg';
 import ironThrone from '../assets/images/SVG/iron-throne3.svg';
+import winterfell from '../assets/images/SVG/winterfell.svg';
 
 const Board = props => {
   const tiles = [];
@@ -56,7 +57,7 @@ const Board = props => {
     for (let i = 1; i <= 30; i++) {
       let tile = (
         <div className="board__tile" key={i}>
-          {i}
+          <span className="board__tilenr">{i}</span>
           {i === trapTiles[0] ||
           i === trapTiles[1] ||
           i === trapTiles[2] ||
@@ -70,6 +71,13 @@ const Board = props => {
           i === ladderTiles[3] ||
           i === ladderTiles[4] ? (
             <img className="board__ladder" src={ladder} alt="trap" />
+          ) : null}
+          {i === 1 ? (
+            <img
+              className="board__winterfell"
+              src={winterfell}
+              alt="winterfell"
+            />
           ) : null}
           {i === 30 ? (
             <img className="board__throne" src={ironThrone} alt="iron throne" />
