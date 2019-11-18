@@ -1,9 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import Character from '../components/character';
 import CharModal from '../components/charModal';
 import { PlayerContext } from '../contexts/playerContextProvider';
-
-import music from '../assets/music/game.mp3';
 
 import arya from '../assets/images/SVG/arya.svg';
 import daenerys from '../assets/images/SVG/daenerys.svg';
@@ -21,13 +19,6 @@ import syrio from '../assets/images/SVG/syrio.svg';
 // import sandor from "./assets/images/SVG/sandor.svg";
 
 const CharSelect = props => {
-  useEffect(() => {
-    const audio = new Audio(music);
-    audio.loop = true;
-    audio.play();
-    audio.volume = 0.2;
-  }, []);
-
   const characterList = [
     {
       firstName: 'Grey',

@@ -1,4 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
+import UIfx from 'uifx';
+
+import diceAudio from '../assets/music/dice.mp3';
 
 import { Redirect } from 'react-router-dom';
 import { PlayerContext } from '../contexts/playerContextProvider';
@@ -9,6 +12,7 @@ import ironThrone from '../assets/images/SVG/iron-throne3.svg';
 import winterfell from '../assets/images/SVG/winterfell.svg';
 
 const Board = props => {
+  const diceSound = new UIfx(diceAudio);
   const tiles = [];
   const [player1, setPlayer1, player2, setPlayer2] = useContext(PlayerContext);
   const [diceState, setDiceState] = useState(0);
@@ -21,6 +25,7 @@ const Board = props => {
 
   let dice = 0;
   const handleDice = () => {
+    diceSound.play();
     dice = Math.floor(Math.random() * 6) + 1;
     handlePlayer();
   };
