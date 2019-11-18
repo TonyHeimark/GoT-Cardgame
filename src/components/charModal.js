@@ -2,8 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import { PlayerContext } from '../contexts/playerContextProvider';
 import { Redirect } from 'react-router-dom';
 import Char3d from './char3d';
+import UIfx from 'uifx';
+
+import selectAudio from '../assets/music/select.mp3';
 
 const CharModal = props => {
+  const selectSound = new UIfx(selectAudio);
   const character = props.item[0];
   const [charData, setCharData] = useState(null);
   const [redirect, setRedirect] = useState(false);
@@ -23,7 +27,7 @@ const CharModal = props => {
   }, []);
 
   const handleSelectt = () => {
-    console.log('clicked');
+    selectSound.play();
     if (player1.turn) {
       setPlayer1(prevState => ({
         ...prevState,

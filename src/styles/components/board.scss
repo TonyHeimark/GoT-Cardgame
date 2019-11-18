@@ -1,5 +1,5 @@
 .board {
-  padding: 0 4%;
+  padding: 50px 4%;
   position: relative;
   min-height: 100vh;
   background: #2a2a2a;
@@ -14,7 +14,7 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 50px;
-    background: url('../../assets/images/westeros.jpg') no-repeat;
+    background: url('../../assets/images/westeros2.jpg') no-repeat;
     background-size: cover;
     border-radius: 30px;
   }
@@ -49,6 +49,10 @@
     top: 300px;
   }
 
+  &__dice-img {
+    width: 100px;
+  }
+
   &__button {
     width: 300px;
     font-size: 1.4rem;
@@ -61,12 +65,67 @@
 
   // tiles
 
+  &__trap16 {
+    width: 170px;
+    position: absolute;
+    top: 20px;
+    left: -100px;
+  }
+
+  &__trap19 {
+    width: 150px;
+    top: -30px;
+    transform: rotate(20deg);
+    position: absolute;
+  }
+
+  &__trap24 {
+    width: 120px;
+    position: absolute;
+    left: -60px;
+    top: 20px;
+  }
+
+  &__trap28 {
+    width: 60px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+  }
+
+  &__red-arrow {
+    position: absolute;
+    width: 25px;
+    right: 0;
+    top: 1px;
+  }
+
   &__trap {
-    background-color: firebrick;
+  }
+
+  &__ladder5 {
+    width: 150px;
+    position: absolute;
+    left: -50px;
+    top: 20px;
+  }
+
+  &__ladder14 {
+    width: 120px;
+    position: absolute;
+    left: -30px;
+    top: 20px;
+    transform: rotate(-5deg);
+  }
+
+  &__green-arrow {
+    position: absolute;
+    width: 25px;
+    right: 0;
+    top: 1px;
   }
 
   &__ladder {
-    background-color: forestgreen;
   }
 
   &__throne {

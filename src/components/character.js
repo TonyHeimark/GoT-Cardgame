@@ -1,11 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { PlayerContext } from '../contexts/playerContextProvider';
+import UIfx from 'uifx';
+
+import selectAudio from '../assets/music/select.mp3';
 
 import house1 from '../assets/images/SVG/house1.svg';
 import house2 from '../assets/images/SVG/house2.svg';
 
 const Character = props => {
+  const selectSound = new UIfx(selectAudio);
   const character = props.item;
   const { firstName, lastName, charImg } = character;
   const fullName = `${firstName ? firstName : ''} ${lastName ? lastName : ''}`;
@@ -15,6 +19,7 @@ const Character = props => {
   const [player1, setPlayer1, player2, setPlayer2] = useContext(PlayerContext);
 
   const handleSelect = () => {
+    selectSound.play();
     if (player1.turn) {
       setPlayer1(prevState => ({
         ...prevState,
@@ -55,11 +60,11 @@ const Character = props => {
     }
   };
 
-  const jsx = redirect ? <Redirect push to="/board" /> : null;
+  const jsxRedirect = redirect ? <Redirect push to="/board" /> : null;
 
   return (
     <div className="character">
-      {jsx}
+      {jsxRedirect}
       <div className="character__container">
         <span className="character__name">{fullName}</span>
         <img

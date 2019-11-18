@@ -1,35 +1,56 @@
 .character {
   margin: 0 auto;
-  background: url('../../assets/images/SVG/card.svg') no-repeat;
+  background: url('../../assets/images/SVG/cardFrame.svg') no-repeat;
   background-size: contain;
-  padding: 30px 20px;
-  max-width: 200px;
+  padding: 30px 26px;
+  max-width: 230px;
+  position: relative;
 
   &--onboard {
-    width: 200px;
+    width: 190px;
+
+    .character__container {
+      width: 180px;
+      min-height: 240px;
+      margin-left: -5px;
+    }
+
+    .character__image {
+      height: 130px;
+    }
   }
   &__container {
     text-align: center;
+    background-color: #2a2a2a;
+    border-radius: 15px;
+    margin-top: -10px;
+    margin-left: -12px;
+    color: #efefef;
+    width: 220px;
+    min-height: 270px;
   }
 
   &__name {
     display: block;
     font-size: 1.4rem;
+    padding-top: 10px;
     margin-bottom: 20px;
   }
 
   &__image {
-    height: 150px;
-    width: 150px;
+    height: 170px;
+    width: 130px;
     margin-bottom: 20px;
   }
 
   &__buttons {
-    width: 100%;
+    position: absolute;
+    width: 220px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-left: -20px;
+    margin-left: -23px;
+    margin-top: -10px;
   }
 
   &__button {
@@ -55,6 +76,7 @@
     border-radius: 50%;
     top: -20px;
     right: -50px;
+    z-index: 99;
   }
 
   &__house2 {
@@ -65,5 +87,6 @@
     border-radius: 50%;
     top: -20px;
     left: -50px;
+    z-index: 99;
   }
 }
