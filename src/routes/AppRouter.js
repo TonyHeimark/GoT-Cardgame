@@ -10,13 +10,13 @@ const AppRouter = () => (
   <BrowserRouter>
     <div>
       <Header />
-      <Layout>
-        <Switch>
+      <Switch>
+        <Layout>
           <Route path="/" component={CharSelect} exact={true} />
           <Route path="/board" component={Board} />
           <Route path="/victory" component={Victory} />
-        </Switch>
-      </Layout>
+        </Layout>
+      </Switch>
     </div>
   </BrowserRouter>
 );

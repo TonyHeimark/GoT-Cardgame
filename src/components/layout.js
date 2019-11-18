@@ -8,7 +8,7 @@ const Layout = props => {
     audio.loop = true;
     audio.play();
     audio.volume = 0.2;
-  }, []);
+  }, [props.children]);
 
   return (
     <>
