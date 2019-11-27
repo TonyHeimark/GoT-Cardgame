@@ -8,6 +8,7 @@ const Layout = props => {
   const audio = new Audio(music);
   audio.loop = true;
   audio.volume = 0.15;
+  audio.muted = false;
 
   const play = () => {
     setIsMusicActive(true);
@@ -17,11 +18,13 @@ const Layout = props => {
     setIsMusicActive(false);
   };
 
-  if (isMusicActive) {
-    audio.play();
-  } else {
-    audio.pause();
-  }
+  useEffect(() => {
+    if (isMusicActive) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }, [isMusicActive]);
 
   return (
     <div>
