@@ -19,12 +19,12 @@ const Layout = props => {
   };
 
   useEffect(() => {
-    if (isMusicActive) {
-      audio.play();
-    } else {
-      audio.pause();
+    if (window && isMusicActive) {
+      window.addEventListener('click', () => {
+        audio.play();
+      });
     }
-  }, [isMusicActive]);
+  }, [window, isMusicActive]);
 
   return (
     <div>
