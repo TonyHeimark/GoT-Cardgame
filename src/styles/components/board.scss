@@ -13,7 +13,7 @@
     max-width: 800px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-gap: 30px;
+    grid-gap: 10px;
     background: url('../../assets/images/westeros3.jpg') no-repeat;
     background-size: cover;
     border-radius: 30px;
@@ -32,9 +32,10 @@
   }
 
   &__tile {
-    width: 70px;
-    height: 70px;
-    background: url('../../assets/images/SVG/frame.svg');
+    width: 100px;
+    height: 100px;
+    background: url('../../assets/images/SVG/frameType2.svg');
+    background-repeat: no-repeat;
     display: inline-block;
     position: relative;
     @media (max-width: 1100px) {
@@ -58,7 +59,7 @@
   &__characters {
     position: absolute;
     right: 0;
-    top: 50px;
+    top: 85px;
     @media (max-width: 1025px) {
       position: static;
       display: grid;
@@ -75,8 +76,8 @@
     display: inline;
     color: #efefef;
     position: absolute;
-    right: 230px;
-    top: 290px;
+    right: 270px;
+    top: 325px;
     @media (max-width: 1025px) {
       position: static;
     }
@@ -88,13 +89,13 @@
 
   &__button {
     width: 200px;
-    margin: 50px auto;
+    margin: 0px auto;
     border: none;
     position: absolute;
     background: transparent;
-    right: 10px;
+    right: 40px;
     z-index: 99;
-    top: 230px;
+    top: 200px;
     cursor: pointer;
     &:focus {
       outline: none;
@@ -115,10 +116,10 @@
   }
 
   &__trap16 {
-    width: 140px;
+    width: 100px;
     position: absolute;
-    top: 20px;
-    left: -80px;
+    top: 40px;
+    left: -40px;
     @media (max-width: 700px) {
       position: static;
       width: 90px;
@@ -127,7 +128,8 @@
 
   &__trap19 {
     width: 150px;
-    top: -30px;
+    top: -35px;
+    left: 40px;
     transform: rotate(20deg);
     position: absolute;
     @media (max-width: 700px) {
@@ -151,7 +153,7 @@
     width: 50px;
     position: absolute;
     left: 0;
-    top: 5px;
+    top: 15px;
     @media (max-width: 700px) {
       position: static;
       width: 90px;
@@ -183,7 +185,7 @@
     width: 100px;
     position: absolute;
     left: -10px;
-    top: 20px;
+    top: 30px;
     transform: rotate(-5deg);
     @media (max-width: 700px) {
       position: static;
@@ -192,10 +194,10 @@
   }
 
   &__ladder23 {
-    width: 50px;
+    width: 60px;
     position: absolute;
     top: 20px;
-    left: -10px;
+    left: 25px;
     @media (max-width: 700px) {
       position: static;
       width: 90px;
@@ -216,7 +218,7 @@
     position: absolute;
     width: 110px;
     top: -90px;
-    left: -18px;
+    left: -5px;
     @media (max-width: 700px) {
       top: -50px;
       left: -11px;
@@ -224,10 +226,10 @@
     }
   }
   &__winterfell {
-    width: 200px;
+    width: 180px;
     position: absolute;
-    left: -50px;
-    top: -40px;
+    left: 0px;
+    top: 0px;
     @media (max-width: 700px) {
       position: static;
       width: 90px;
@@ -247,5 +249,16 @@
   &__shame-link {
     color: white;
     display: inline;
+  }
+}
+
+@keyframes spin {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(1800deg);
   }
 }

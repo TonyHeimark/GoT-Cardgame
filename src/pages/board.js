@@ -15,7 +15,7 @@ import dice5 from '../assets/images/SVG/dice5.svg';
 import dice6 from '../assets/images/SVG/dice6.svg';
 
 import buttonMain from '../assets/images/SVG/button_main.svg';
-import buttonHover from '../assets/images/SVG/button_clicked.svg';
+import buttonDisabled from '../assets/images/SVG/button_clicked.svg';
 
 import ironThrone from '../assets/images/SVG/iron-throne3.svg';
 import winterfell from '../assets/images/SVG/winterfell.svg';
@@ -34,50 +34,62 @@ const Board = props => {
   const tiles = [];
   const [player1, setPlayer1, player2, setPlayer2] = useContext(PlayerContext);
   const [diceState, setDiceState] = useState(0);
-
-  const [buttonHovered, setButtonHovered] = useState(false);
-  const [buttonClicked, setButton] = useState(false);
+  const [buttonOneClicked, setButtonOneClicked] = useState(false);
+  const [buttonTwoClicked, setButtonTwoClicked] = useState(false);
 
   const player1Tile = player1.tile;
   const player2Tile = player2.tile;
-  const trapTiles = [8, 16, 19, 24, 28];
 
+  const trapTiles = [8, 16, 19, 24, 28];
   const ladderTiles = [5, 14, 23];
 
   let dice = 0;
+  const resetDice = e => {
+    if (e.target.id === 'player1Button') {
+      setButtonOneClicked(true);
+    } else if (e.target.id === 'player2Button') {
+      setButtonTwoClicked(true);
+    }
+    setDiceState(0);
+    setTimeout(() => {
+      handleDice();
+    }, 300);
+  };
   const handleDice = () => {
-    diceSound.play();
     dice = Math.floor(Math.random() * 6) + 1;
-    handlePlayer();
+    diceSound.play();
+    setDiceState(dice);
+    setTimeout(() => {
+      handlePlayer();
+      setButtonOneClicked(false);
+      setButtonTwoClicked(false);
+    }, 1200);
   };
   // handle turn exchange and tile update
   const handlePlayer = () => {
-    setDiceState(dice);
-    setTimeout(() => {
-      if (player1.turn) {
-        setPlayer1(prevState => ({
-          ...prevState,
-          tile: player1.tile + dice,
-          turn: dice === 6 ? true : false
-        }));
+    if (player1.turn) {
+      setPlayer1(prevState => ({
+        ...prevState,
+        tile: player1.tile + dice,
+        turn: dice === 6 ? true : false
+      }));
 
-        setPlayer2(prevState => ({
-          ...prevState,
+      setPlayer2(prevState => ({
+        ...prevState,
 
-          turn: dice !== 6 ? true : false
-        }));
-      } else if (player2.turn) {
-        setPlayer2(prevState => ({
-          ...prevState,
-          tile: player2.tile + dice,
-          turn: dice === 6 ? true : false
-        }));
-        setPlayer1(prevState => ({
-          ...prevState,
-          turn: dice !== 6 ? true : false
-        }));
-      }
-    }, 300);
+        turn: dice !== 6 ? true : false
+      }));
+    } else if (player2.turn) {
+      setPlayer2(prevState => ({
+        ...prevState,
+        tile: player2.tile + dice,
+        turn: dice === 6 ? true : false
+      }));
+      setPlayer1(prevState => ({
+        ...prevState,
+        turn: dice !== 6 ? true : false
+      }));
+    }
   };
 
   // Tiles generator
@@ -318,6 +330,7 @@ const Board = props => {
       }
 
       // must hit exactly 30 to win, not over. bounces back from 30 if rolling above.
+      /*
       if (player1Tile > 30) {
         const setBack = player1Tile - 30;
         alert(
@@ -339,9 +352,10 @@ const Board = props => {
           tile: player2.tile - setBack - setBack
         }));
       }
+      */
 
       //victory handling
-      if (player1Tile === 30) {
+      if (player1Tile >= 30) {
         setPlayer1(prevState => ({
           ...prevState,
           victory: true
@@ -353,7 +367,7 @@ const Board = props => {
         }));
       }
 
-      if (player2Tile === 30) {
+      if (player2Tile >= 30) {
         setPlayer2(prevState => ({
           ...prevState,
           victory: true
@@ -378,37 +392,54 @@ const Board = props => {
           <div>
             <div className="board__dice">
               {diceState === 1 ? (
-                <img className="board__dice-img" src={dice1} alt="dice" />
+                <img
+                  className="board__dice-img"
+                  style={{ animation: `spin 1s` }}
+                  src={dice1}
+                  alt="dice"
+                />
               ) : null}
               {diceState === 2 ? (
-                <img className="board__dice-img" src={dice2} alt="dice" />
+                <img
+                  className="board__dice-img"
+                  style={{ animation: `spin 1s` }}
+                  src={dice2}
+                  alt="dice"
+                />
               ) : null}
               {diceState === 3 ? (
-                <img className="board__dice-img" src={dice3} alt="dice" />
+                <img
+                  className="board__dice-img"
+                  style={{ animation: `spin 1s` }}
+                  src={dice3}
+                  alt="dice"
+                />
               ) : null}
               {diceState === 4 ? (
-                <img className="board__dice-img" src={dice4} alt="dice" />
+                <img
+                  className="board__dice-img"
+                  style={{ animation: `spin 1s` }}
+                  src={dice4}
+                  alt="dice"
+                />
               ) : null}
               {diceState === 5 ? (
-                <img className="board__dice-img" src={dice5} alt="dice" />
+                <img
+                  className="board__dice-img"
+                  style={{ animation: `spin 1s` }}
+                  src={dice5}
+                  alt="dice"
+                />
               ) : null}
               {diceState === 6 ? (
-                <img className="board__dice-img" src={dice6} alt="dice" />
+                <img
+                  className="board__dice-img"
+                  style={{ animation: `spin 1s` }}
+                  src={dice6}
+                  alt="dice"
+                />
               ) : null}
             </div>
-            <button className="board__button" onClick={handleDice}>
-              <img
-                onMouseDown={() => {
-                  setButtonHovered(true);
-                }}
-                onMouseUp={() => {
-                  setButtonHovered(false);
-                }}
-                className="board__button-img"
-                src={buttonHovered ? buttonHover : buttonMain}
-                alt="button"
-              />
-            </button>
           </div>
           <div className="board__characters">
             <div className="character character--onboard">
@@ -433,6 +464,18 @@ const Board = props => {
                   }`}
                 />
               </div>
+              <button
+                disabled={player2.turn || buttonOneClicked}
+                className="board__button"
+                onClick={resetDice}
+              >
+                <img
+                  id="player1Button"
+                  className="board__button-img board__button--player1"
+                  src={player2.turn ? buttonDisabled : buttonMain}
+                  alt="button"
+                />
+              </button>
             </div>
             <div className="character character--onboard">
               <div className="character__container">
@@ -456,6 +499,18 @@ const Board = props => {
                   }`}
                 />
               </div>
+              <button
+                className="board__button board__button--player2"
+                disabled={player1.turn || buttonTwoClicked}
+                onClick={resetDice}
+              >
+                <img
+                  id="player2Button"
+                  className="board__button-img"
+                  src={player1.turn ? buttonDisabled : buttonMain}
+                  alt="button"
+                />
+              </button>
             </div>
           </div>
         </div>
