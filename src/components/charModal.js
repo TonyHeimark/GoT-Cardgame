@@ -96,9 +96,17 @@ const CharModal = props => {
               </h2>
             ) : null}
           </div>
-
+          {/*
           <div className="charModal__canvas">
-            <Char3d />
+              <Char3d />
+          </div>
+              */}
+          <div className="charModal__image-container">
+            <img
+              className="charModal__image"
+              src={character.charImg}
+              alt="character"
+            />
           </div>
 
           <div className="charModal__info">

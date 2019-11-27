@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import UIfx from 'uifx';
 
 import diceAudio from '../assets/music/dice.mp3';
@@ -371,44 +372,44 @@ const Board = props => {
       {player1.victory || player2.victory ? (
         <Redirect push to="/victory" />
       ) : null}
-      <div className="board">
-        <div className="board__tiles">{tiles.map(tile => tile)}</div>
-        <div>
-          <div className="board__dice">
-            {diceState === 1 ? (
-              <img className="board__dice-img" src={dice1} alt="dice" />
-            ) : null}
-            {diceState === 2 ? (
-              <img className="board__dice-img" src={dice2} alt="dice" />
-            ) : null}
-            {diceState === 3 ? (
-              <img className="board__dice-img" src={dice3} alt="dice" />
-            ) : null}
-            {diceState === 4 ? (
-              <img className="board__dice-img" src={dice4} alt="dice" />
-            ) : null}
-            {diceState === 5 ? (
-              <img className="board__dice-img" src={dice5} alt="dice" />
-            ) : null}
-            {diceState === 6 ? (
-              <img className="board__dice-img" src={dice6} alt="dice" />
-            ) : null}
+      {player1.character || player2.character ? (
+        <div className="board">
+          <div className="board__tiles">{tiles.map(tile => tile)}</div>
+          <div>
+            <div className="board__dice">
+              {diceState === 1 ? (
+                <img className="board__dice-img" src={dice1} alt="dice" />
+              ) : null}
+              {diceState === 2 ? (
+                <img className="board__dice-img" src={dice2} alt="dice" />
+              ) : null}
+              {diceState === 3 ? (
+                <img className="board__dice-img" src={dice3} alt="dice" />
+              ) : null}
+              {diceState === 4 ? (
+                <img className="board__dice-img" src={dice4} alt="dice" />
+              ) : null}
+              {diceState === 5 ? (
+                <img className="board__dice-img" src={dice5} alt="dice" />
+              ) : null}
+              {diceState === 6 ? (
+                <img className="board__dice-img" src={dice6} alt="dice" />
+              ) : null}
+            </div>
+            <button className="board__button" onClick={handleDice}>
+              <img
+                onMouseDown={() => {
+                  setButtonHovered(true);
+                }}
+                onMouseUp={() => {
+                  setButtonHovered(false);
+                }}
+                className="board__button-img"
+                src={buttonHovered ? buttonHover : buttonMain}
+                alt="button"
+              />
+            </button>
           </div>
-          <button className="board__button" onClick={handleDice}>
-            <img
-              onMouseDown={() => {
-                setButtonHovered(true);
-              }}
-              onMouseUp={() => {
-                setButtonHovered(false);
-              }}
-              className="board__button-img"
-              src={buttonHovered ? buttonHover : buttonMain}
-              alt="button"
-            />
-          </button>
-        </div>
-        {player1.character || player2.character ? (
           <div className="board__characters">
             <div className="character character--onboard">
               <div className="character__container">
@@ -457,12 +458,18 @@ const Board = props => {
               </div>
             </div>
           </div>
-        ) : (
-          <div>
-            Shame, shame, shame, shame... GO BACK and choose a character dammit.
-          </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="board__shame-message">
+          <p>
+            Shame, shame, shame, shame...{' '}
+            <Link to="/" className="board__shame-link">
+              GO BACK
+            </Link>{' '}
+            and choose a character you halfwit.
+          </p>
+        </div>
+      )}
     </>
   );
 };

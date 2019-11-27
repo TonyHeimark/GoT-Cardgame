@@ -9,7 +9,9 @@ const ThroneModel = () => {
   const [model, setModel] = useState();
 
   useEffect(() => {
-    new GLTFLoader().load('/throne/scene.gltf', setModel);
+    new GLTFLoader().load('/throne/scene.gltf', setModel, xhr => {
+      console.log(`${(xhr.loaded / xhr.total) * 100}% loaded`);
+    });
   }, []);
 
   return model ? <primitive object={model.scene} /> : null;

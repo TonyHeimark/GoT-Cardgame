@@ -233,4 +233,19 @@
       width: 90px;
     }
   }
+
+  &__shame-message {
+    height: 90vh;
+    display: grid;
+    color: white;
+    font-size: 3rem;
+    place-content: center;
+    width: 700px;
+    margin: 0 auto;
+  }
+
+  &__shame-link {
+    color: white;
+    display: inline;
+  }
 }
