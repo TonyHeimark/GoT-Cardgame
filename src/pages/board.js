@@ -174,7 +174,7 @@ const Board = props => {
       ) {
         if (player1Tile === trapTiles[0]) {
           alert(
-            `A dwarf bought your horse for a future favor and mentioned something about always paying his depths. Anyway, move back 2 steps player 1`
+            `A dwarf bought your horse for a future favor and mentioned something about always paying his depts. Anyway, move back 2 steps player 1`
           );
           setPlayer1(prevState => ({
             ...prevState,
@@ -251,7 +251,7 @@ const Board = props => {
       ) {
         if (player2Tile === trapTiles[0]) {
           alert(
-            `A dwarf bought your horse for a future favor and mentioned something about always paying his depths. Anyway, move back 2 steps player 2`
+            `A dwarf bought your horse for a future favor and mentioned something about always paying his depts. Anyway, move back 2 steps player 2`
           );
           setPlayer2(prevState => ({
             ...prevState,
