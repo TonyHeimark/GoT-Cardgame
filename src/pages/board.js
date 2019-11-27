@@ -13,6 +13,9 @@ import dice4 from '../assets/images/SVG/dice4.svg';
 import dice5 from '../assets/images/SVG/dice5.svg';
 import dice6 from '../assets/images/SVG/dice6.svg';
 
+import buttonMain from '../assets/images/SVG/button_main.svg';
+import buttonHover from '../assets/images/SVG/button_clicked.svg';
+
 import ironThrone from '../assets/images/SVG/iron-throne3.svg';
 import winterfell from '../assets/images/SVG/winterfell.svg';
 import tyrionHead from '../assets/images/SVG/tyrionHead.svg';
@@ -31,6 +34,9 @@ const Board = props => {
   const [player1, setPlayer1, player2, setPlayer2] = useContext(PlayerContext);
   const [diceState, setDiceState] = useState(0);
 
+  const [buttonHovered, setButtonHovered] = useState(false);
+  const [buttonClicked, setButton] = useState(false);
+
   const player1Tile = player1.tile;
   const player2Tile = player2.tile;
   const trapTiles = [8, 16, 19, 24, 28];
@@ -45,30 +51,32 @@ const Board = props => {
   };
   // handle turn exchange and tile update
   const handlePlayer = () => {
-    if (player1.turn) {
-      setPlayer1(prevState => ({
-        ...prevState,
-        tile: player1.tile + dice,
-        turn: dice === 6 ? true : false
-      }));
-
-      setPlayer2(prevState => ({
-        ...prevState,
-
-        turn: dice !== 6 ? true : false
-      }));
-    } else if (player2.turn) {
-      setPlayer2(prevState => ({
-        ...prevState,
-        tile: player2.tile + dice,
-        turn: dice === 6 ? true : false
-      }));
-      setPlayer1(prevState => ({
-        ...prevState,
-        turn: dice !== 6 ? true : false
-      }));
-    }
     setDiceState(dice);
+    setTimeout(() => {
+      if (player1.turn) {
+        setPlayer1(prevState => ({
+          ...prevState,
+          tile: player1.tile + dice,
+          turn: dice === 6 ? true : false
+        }));
+
+        setPlayer2(prevState => ({
+          ...prevState,
+
+          turn: dice !== 6 ? true : false
+        }));
+      } else if (player2.turn) {
+        setPlayer2(prevState => ({
+          ...prevState,
+          tile: player2.tile + dice,
+          turn: dice === 6 ? true : false
+        }));
+        setPlayer1(prevState => ({
+          ...prevState,
+          turn: dice !== 6 ? true : false
+        }));
+      }
+    }, 300);
   };
 
   // Tiles generator
@@ -387,8 +395,17 @@ const Board = props => {
             ) : null}
           </div>
           <button className="board__button" onClick={handleDice}>
-            Roll the dice player
-            {player1.turn ? player1.player : player2.turn ? player2.player : ''}
+            <img
+              onMouseDown={() => {
+                setButtonHovered(true);
+              }}
+              onMouseUp={() => {
+                setButtonHovered(false);
+              }}
+              className="board__button-img"
+              src={buttonHovered ? buttonHover : buttonMain}
+              alt="button"
+            />
           </button>
         </div>
         {player1.character || player2.character ? (

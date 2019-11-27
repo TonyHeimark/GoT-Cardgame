@@ -13,10 +13,22 @@
     max-width: 800px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-gap: 50px;
-    background: url('../../assets/images/westeros2.jpg') no-repeat;
+    grid-gap: 30px;
+    background: url('../../assets/images/westeros3.jpg') no-repeat;
     background-size: cover;
     border-radius: 30px;
+    max-height: 80vh;
+
+    @media (max-width: 1230px) {
+      min-width: 500px;
+    }
+
+    @media (max-width: 1025px) {
+      min-width: 300px;
+      grid-template-columns: repeat(4, 1fr);
+      background: none;
+      padding: 50px 0;
+    }
   }
 
   &__tile {
@@ -25,19 +37,38 @@
     background: url('../../assets/images/SVG/frame.svg');
     display: inline-block;
     position: relative;
+    @media (max-width: 1230px) {
+      width: 60px;
+      height: 60px;
+    }
+    @media (max-width: 1025px) {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   &__tilenr {
     color: white;
-    font-size: 1rem;
-    text-align: center;
-    width: 100%;
+    font-size: 1.2rem;
+    position: absolute;
+    top: -10px;
+    left: -5px;
   }
 
   &__characters {
     position: absolute;
     right: 0;
     top: 50px;
+    @media (max-width: 1025px) {
+      position: static;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 700px) {
+      position: static;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
   }
 
   &__dice {
@@ -46,7 +77,10 @@
     color: #efefef;
     position: absolute;
     right: 250px;
-    top: 300px;
+    top: 265px;
+    @media (max-width: 1025px) {
+      position: static;
+    }
   }
 
   &__dice-img {
@@ -55,21 +89,40 @@
 
   &__button {
     width: 300px;
-    font-size: 1.4rem;
-    padding: 10px 20px;
-    background: #ccccc0;
     margin: 50px auto;
     border: none;
-    display: inline;
+    position: absolute;
+    background: transparent;
+    right: 10px;
+    top: 550px;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
   }
 
   // tiles
 
-  &__trap16 {
-    width: 170px;
+  &__trap8 {
+    width: 50px;
     position: absolute;
     top: 20px;
-    left: -100px;
+    left: -10px;
+    @media (max-width: 700px) {
+      position: static;
+      width: 90px;
+    }
+  }
+
+  &__trap16 {
+    width: 140px;
+    position: absolute;
+    top: 20px;
+    left: -80px;
+    @media (max-width: 700px) {
+      position: static;
+      width: 90px;
+    }
   }
 
   &__trap19 {
@@ -77,20 +130,32 @@
     top: -30px;
     transform: rotate(20deg);
     position: absolute;
+    @media (max-width: 700px) {
+      position: static;
+      width: 90px;
+    }
   }
 
   &__trap24 {
-    width: 120px;
+    width: 100px;
     position: absolute;
     left: -60px;
     top: 20px;
+    @media (max-width: 700px) {
+      position: static;
+      width: 90px;
+    }
   }
 
   &__trap28 {
-    width: 60px;
+    width: 50px;
     position: absolute;
     left: 0;
     top: 5px;
+    @media (max-width: 700px) {
+      position: static;
+      width: 90px;
+    }
   }
 
   &__red-arrow {
@@ -108,14 +173,33 @@
     position: absolute;
     left: -50px;
     top: 20px;
+    @media (max-width: 700px) {
+      position: static;
+      width: 90px;
+    }
   }
 
   &__ladder14 {
-    width: 120px;
+    width: 100px;
     position: absolute;
-    left: -30px;
+    left: -10px;
     top: 20px;
     transform: rotate(-5deg);
+    @media (max-width: 700px) {
+      position: static;
+      width: 90px;
+    }
+  }
+
+  &__ladder23 {
+    width: 50px;
+    position: absolute;
+    top: 20px;
+    left: -10px;
+    @media (max-width: 700px) {
+      position: static;
+      width: 90px;
+    }
   }
 
   &__green-arrow {
@@ -133,11 +217,20 @@
     width: 110px;
     top: -90px;
     left: -18px;
+    @media (max-width: 700px) {
+      top: -50px;
+      left: -11px;
+      width: 60px;
+    }
   }
   &__winterfell {
     width: 200px;
     position: absolute;
     left: -50px;
     top: -40px;
+    @media (max-width: 700px) {
+      position: static;
+      width: 90px;
+    }
   }
 }

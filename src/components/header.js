@@ -1,19 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { PlayerContext } from '../contexts/playerContextProvider';
 import logo from '../assets/images/SVG/logo-white.svg';
 
-import music from '../assets/music/game.mp3';
-
 const Header = props => {
   const [player1, setPlayer1, player2, setPlayer2] = useContext(PlayerContext);
-
-  useEffect(() => {
-    const audio = new Audio(music);
-    audio.pause();
-    audio.loop = true;
-    audio.play();
-    audio.volume = 0.15;
-  }, []);
 
   return (
     <header className="header">
