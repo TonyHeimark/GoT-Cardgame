@@ -17,13 +17,11 @@ const Layout = props => {
     setIsMusicActive(false);
   };
 
-  useEffect(() => {
-    if (isMusicActive) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-  }, [isMusicActive]);
+  if (isMusicActive) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
 
   return (
     <div>

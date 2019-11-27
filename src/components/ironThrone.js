@@ -10,7 +10,7 @@ const ThroneModel = () => {
 
   useEffect(() => {
     new GLTFLoader().load('/throne/scene.gltf', setModel, xhr => {
-      console.log(`${(xhr.loaded / xhr.total) * 100}% loaded`);
+      console.log(`loading`);
     });
   }, []);
 
