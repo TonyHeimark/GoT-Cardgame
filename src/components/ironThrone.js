@@ -51,7 +51,7 @@ const IronThrone = () => {
 
   return (
     <>
-      {checkBrowser && loading ? (
+      {checkBrowser && !loading ? (
         <Canvas camera={{ position: [1, 1, 3] }}>
           <ambientLight intensity={3.5} />
           <Controls />
