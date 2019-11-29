@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { PlayerContext } from '../contexts/playerContextProvider';
 import { Redirect } from 'react-router-dom';
-import Char3d from './char3d';
 import UIfx from 'uifx';
 
 import selectAudio from '../assets/music/select.mp3';
@@ -26,7 +25,7 @@ const CharModal = props => {
       .then(data => setCharData(data));
   }, []);
 
-  const handleSelectt = () => {
+  const handleSelect = () => {
     selectSound.play();
     if (player1.turn) {
       setPlayer1(prevState => ({
@@ -69,6 +68,8 @@ const CharModal = props => {
     }
   };
 
+  console.log(charData);
+
   const jsxRedirect = redirect ? <Redirect push to="/board" /> : null;
 
   return (
@@ -110,14 +111,59 @@ const CharModal = props => {
           </div>
 
           <div className="charModal__info">
-            {charData && charData !== [] && charData[0].tvSeries
-              ? charData[0].tvSeries.map(series => (
-                  <span key={series}>{series}</span>
-                ))
-              : null}
+            <div className="charModal__column">
+              {charData && charData.length > 1 && charData[1].aliases ? (
+                <>
+                  <span className="charModal__info-heading">Aliases</span>
+                  <ul className="charModal__list">
+                    {charData[1].aliases.map(alias => (
+                      <li className="charModal__list-item" key={alias}>
+                        <span>{alias === '' ? 'No aliases' : alias}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : charData && charData.length === 1 && charData[0].aliases ? (
+                <>
+                  <span className="charModal__info-heading">Aliases</span>
+                  <ul className="charModal__list">
+                    {charData[0].aliases.map(alias => (
+                      <li className="charModal__list-item" key={alias}>
+                        <span>{alias === '' ? 'No aliases' : alias}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : null}
+            </div>
+            <div className="charModal__column">
+              {charData && charData.length > 1 && charData[1].tvSeries ? (
+                <>
+                  <span className="charModal__info-heading">Seasons</span>
+                  <ul className="charModal__list">
+                    {charData[1].tvSeries.map(series => (
+                      <li className="charModal__list-item" key={series}>
+                        <span>{series === '' ? 'No series' : series}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : charData && charData.length === 1 && charData[0].tvSeries ? (
+                <>
+                  <span className="charModal__info-heading">Seasons</span>
+                  <ul className="charModal__list">
+                    {charData[0].tvSeries.map(series => (
+                      <li className="charModal__list-item" key={series}>
+                        <span>{series === '' ? 'No series' : series}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : null}
+            </div>
 
-            <div>
-              <button onClick={handleSelectt} className="character__button">
+            <div className="charModal__button-container">
+              <button onClick={handleSelect} className="character__button">
                 Select
               </button>
             </div>
