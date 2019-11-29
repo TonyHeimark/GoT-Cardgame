@@ -1,5 +1,5 @@
 import React from 'react';
-import buttonMain from '../assets/images/SVG/button_main.svg';
+import buttonMainOk from '../assets/images/SVG/button__main_ok.svg';
 
 const boardModal = props => {
   return (
@@ -16,7 +16,7 @@ const boardModal = props => {
             <button className="board-modal__button" onClick={props.handleModal}>
               <img
                 className="board-modal__btn-img"
-                src={buttonMain}
+                src={buttonMainOk}
                 alt="button"
               />
             </button>

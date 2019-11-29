@@ -6,8 +6,9 @@
   background: url('../../assets/images/fire.jpg') no-repeat;
   background-size: cover;
 
+  // tiles box and layout
   &__tiles {
-    padding: 50px 0;
+    padding: 0px 0;
     width: auto;
     min-width: 400px;
 
@@ -31,6 +32,7 @@
     }
   }
 
+  //individual tile
   &__tile {
     width: 80px;
     height: 80px;
@@ -59,7 +61,7 @@
   &__characters {
     position: absolute;
     right: 0;
-    top: 85px;
+    top: 45px;
     @media (max-width: 1025px) {
       position: static;
       display: grid;
@@ -77,7 +79,7 @@
     color: #efefef;
     position: absolute;
     right: 270px;
-    top: 325px;
+    top: 285px;
     @media (max-width: 1025px) {
       position: static;
     }
@@ -216,9 +218,9 @@
 
   &__throne {
     position: absolute;
-    width: 140px;
-    top: -135px;
-    left: -25px;
+    width: 120px;
+    top: -115px;
+    left: -20px;
     @media (max-width: 700px) {
       top: -50px;
       left: -11px;

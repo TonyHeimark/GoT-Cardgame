@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { PlayerContext } from '../contexts/playerContextProvider';
-
 import { Redirect } from 'react-router-dom';
 
 import IronThrone from '../components/ironThrone';
+
+import buttonMainPlay from '../assets/images/SVG/button__main_play.svg';
 
 const Victory = props => {
   const [player1, setPlayer1, player2, setPlayer2] = useContext(PlayerContext);
@@ -50,7 +51,11 @@ const Victory = props => {
                   setRedirect(true);
                 }}
               >
-                Play again
+                <img
+                  className="victory__btn-img"
+                  src={buttonMainPlay}
+                  alt="button"
+                />
               </button>
             </div>
           </div>

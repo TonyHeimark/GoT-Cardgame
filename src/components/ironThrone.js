@@ -2,21 +2,29 @@ import React, { useState, useRef, useEffect } from 'react';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Canvas, extend, useThree, useRender } from 'react-three-fiber';
+import { FadeLoader } from 'react-spinners';
+import { css } from '@emotion/core';
 
 extend({ OrbitControls });
+let loading = null;
 
 const ThroneModel = () => {
   const [model, setModel] = useState();
-
   useEffect(() => {
-    new GLTFLoader().load('/throne/scene.gltf', setModel, xhr => {
-      console.log(`loading`);
-    });
+    new GLTFLoader().load(
+      '/throne/scene.gltf',
+      gltf => {
+        setModel(gltf);
+        loading = false;
+      },
+      xhr => {
+        loading = true;
+      }
+    );
   }, []);
 
   return model ? <primitive object={model.scene} /> : null;
 };
-
 const Controls = () => {
   const orbitRef = useRef();
   const { camera, gl } = useThree();
@@ -28,6 +36,7 @@ const Controls = () => {
   return (
     <orbitControls
       enableZoom={false}
+      enablePan={false}
       autoRotate
       maxPolarAngle={Math.PI / 3}
       minPolarAngle={Math.PI / 3}
@@ -42,12 +51,16 @@ const IronThrone = () => {
 
   return (
     <>
-      {checkBrowser && (
+      {checkBrowser && !loading ? (
         <Canvas camera={{ position: [1, 1, 3] }}>
           <ambientLight intensity={4} />
           <Controls />
           <ThroneModel />
         </Canvas>
+      ) : (
+        <div className="victory__loader">
+          <FadeLoader sizeUnit={'px'} size={100} color={'#fff'} />
+        </div>
       )}
     </>
   );

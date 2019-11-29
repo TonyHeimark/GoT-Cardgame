@@ -15,17 +15,10 @@
     width: 300px;
   }
 
-  &__copyright {
-    padding: 35px 4% 0 0;
-    color: #efefef;
-    width: 200px;
-    text-align: right;
-  }
-
   &__turn {
     color: #efefef;
     font-size: 1.4rem;
-    padding: 4px 0 0 0;
+    padding: 4px 4% 0 0;
     font-family: 'game';
     margin-left: 200px;
     span {

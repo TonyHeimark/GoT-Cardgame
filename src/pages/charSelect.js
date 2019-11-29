@@ -9,16 +9,12 @@ import drogo from '../assets/images/SVG/drogo.svg';
 import margaery from '../assets/images/SVG/margaery.svg';
 import worm from '../assets/images/SVG/worm.svg';
 import varys from '../assets/images/SVG/varys.svg';
-//import oberyn from '../assets/images/SVG/oberyn.svg';
 import petyr from '../assets/images/SVG/petyr.svg';
 import melisandre from '../assets/images/SVG/melisandre.svg';
 import syrio from '../assets/images/SVG/syrio.svg';
-// import gregor from "./assets/images/SVG/gregor.svg";
-// import jorah from "./assets/images/SVG/jorah.svg";
-// import missandei from "./assets/images/SVG/missandei.svg";
-// import sandor from "./assets/images/SVG/sandor.svg";
 
 const CharSelect = props => {
+  //initial list of characters to choose from
   const characterList = [
     {
       firstName: 'Grey',
@@ -35,11 +31,6 @@ const CharSelect = props => {
       lastName: 'Stark',
       charImg: arya
     },
-    //{
-    //  firstName: 'Oberyn',
-    //  lastName: 'Martell',
-    //  charImg: oberyn
-    //},
     {
       firstName: 'Drogo',
       charImg: drogo
@@ -70,9 +61,6 @@ const CharSelect = props => {
   ];
 
   const [player1, setPlayer1, player2, setPlayer2] = useContext(PlayerContext);
-
-  //const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [modalCharacter, setModalCharacter] = useState(null);
 
   const characters = characterList.filter(char => {
@@ -107,12 +95,10 @@ const CharSelect = props => {
           <h1>
             Choose your character player{' '}
             {player1.turn ? (
-              <span className="character-select__player">{player1.player}</span>
+              <span className="character-select__player">1</span>
             ) : player2.turn ? (
-              <span className="character-select__player">{player2.player}</span>
-            ) : (
-              ''
-            )}
+              <span className="character-select__player">2</span>
+            ) : null}
           </h1>
         </div>
         <div className="character-select__characters">

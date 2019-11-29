@@ -4,7 +4,6 @@ import logo from '../assets/images/SVG/logo-white.svg';
 
 const Header = props => {
   const [player1, setPlayer1, player2, setPlayer2] = useContext(PlayerContext);
-  console.log(props.location);
 
   return (
     <header className="header">
@@ -20,7 +19,6 @@ const Header = props => {
           Your turn Player <span> {player2.player}</span>
         </span>
       )}
-      <div className="header__copyright">&copy; 2019 Tony Heimark</div>
     </header>
   );
 };
