@@ -59,7 +59,12 @@ const IronThrone = () => {
         </Canvas>
       ) : (
         <div className="victory__loader">
-          <FadeLoader sizeUnit={'px'} size={100} color={'#fff'} />
+          <FadeLoader
+            loading={loading}
+            sizeUnit={'px'}
+            size={100}
+            color={'#fff'}
+          />
         </div>
       )}
     </>
