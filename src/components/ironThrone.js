@@ -51,20 +51,15 @@ const IronThrone = () => {
 
   return (
     <>
-      {checkBrowser && !loading ? (
+      {checkBrowser && loading ? (
         <Canvas camera={{ position: [1, 1, 3] }}>
-          <ambientLight intensity={4} />
+          <ambientLight intensity={3.5} />
           <Controls />
           <ThroneModel />
         </Canvas>
       ) : (
         <div className="victory__loader">
-          <FadeLoader
-            loading={loading}
-            sizeUnit={'px'}
-            size={100}
-            color={'#fff'}
-          />
+          <FadeLoader sizeUnit={'px'} size={100} color={'#fff'} />
         </div>
       )}
     </>
