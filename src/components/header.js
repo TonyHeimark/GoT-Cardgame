@@ -4,6 +4,7 @@ import logo from '../assets/images/SVG/logo-white.svg';
 
 const Header = props => {
   const [player1, setPlayer1, player2, setPlayer2] = useContext(PlayerContext);
+  console.log(props.location);
 
   return (
     <header className="header">

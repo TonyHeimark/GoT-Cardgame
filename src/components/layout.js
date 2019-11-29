@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Header from '../components/header';
 
 import music from '../assets/music/game.mp3';
 
@@ -28,6 +29,7 @@ const Layout = props => {
 
   return (
     <div>
+      {props.location.pathname !== '/victory' ? <Header /> : null}
       <main>{props.children}</main>
     </div>
   );

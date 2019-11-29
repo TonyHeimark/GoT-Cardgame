@@ -3,19 +3,19 @@
   position: relative;
   min-height: 100vh;
   background: #2a2a2a;
-  //background: url('../../assets/images/gotsigils.jpg') no-repeat;
-  //background-size: cover;
+  background: url('../../assets/images/fire.jpg') no-repeat;
+  background-size: cover;
 
   &__tiles {
-    padding: 50px;
-    width: 50%;
-    min-width: 700px;
-    max-width: 800px;
+    padding: 50px 0;
+    width: auto;
+    min-width: 400px;
+
+    max-width: 400px;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 10px;
-    background: url('../../assets/images/westeros3.jpg') no-repeat;
-    background-size: cover;
+    grid-template-areas: 'tile30 . . . . . . . .' 'tile29 tile28 tile27 tile26 tile25 tile24 tile23 tile22 tile21' '. . . . . . . . tile20' 'tile11 tile12 tile13 tile14 tile15 tile16 tile17 tile18 tile19' 'tile10 . . . . . . . .' 'tile9 tile8 tile7 tile6 tile5 tile4 tile3 tile2 tile1';
+    grid-gap: 0;
+
     border-radius: 30px;
     max-height: 80vh;
 
@@ -32,8 +32,8 @@
   }
 
   &__tile {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background: url('../../assets/images/SVG/frameType2.svg');
     background-repeat: no-repeat;
     display: inline-block;
@@ -49,11 +49,11 @@
   }
 
   &__tilenr {
-    color: white;
-    font-size: 1.2rem;
+    color: rgba(221, 172, 133, 0.747);
+    font-size: 1rem;
     position: absolute;
-    top: -10px;
-    left: -5px;
+    top: 30px;
+    left: 35px;
   }
 
   &__characters {
@@ -105,10 +105,10 @@
   // tiles
 
   &__trap8 {
-    width: 50px;
+    width: 60px;
     position: absolute;
-    top: 20px;
-    left: -10px;
+    top: 70px;
+    left: 15px;
     @media (max-width: 700px) {
       position: static;
       width: 90px;
@@ -118,8 +118,8 @@
   &__trap16 {
     width: 100px;
     position: absolute;
-    top: 40px;
-    left: -40px;
+    top: 80px;
+    left: 0px;
     @media (max-width: 700px) {
       position: static;
       width: 90px;
@@ -128,8 +128,8 @@
 
   &__trap19 {
     width: 150px;
-    top: -35px;
-    left: 40px;
+    top: -100px;
+    left: 80px;
     transform: rotate(20deg);
     position: absolute;
     @media (max-width: 700px) {
@@ -142,7 +142,7 @@
     width: 100px;
     position: absolute;
     left: -60px;
-    top: 20px;
+    top: -100px;
     @media (max-width: 700px) {
       position: static;
       width: 90px;
@@ -153,7 +153,7 @@
     width: 50px;
     position: absolute;
     left: 0;
-    top: 15px;
+    top: 65px;
     @media (max-width: 700px) {
       position: static;
       width: 90px;
@@ -174,7 +174,7 @@
     width: 150px;
     position: absolute;
     left: -50px;
-    top: 20px;
+    top: 70px;
     @media (max-width: 700px) {
       position: static;
       width: 90px;
@@ -182,10 +182,10 @@
   }
 
   &__ladder14 {
-    width: 100px;
+    width: 80px;
     position: absolute;
     left: -10px;
-    top: 30px;
+    top: -67px;
     transform: rotate(-5deg);
     @media (max-width: 700px) {
       position: static;
@@ -196,7 +196,7 @@
   &__ladder23 {
     width: 60px;
     position: absolute;
-    top: 20px;
+    top: -70px;
     left: 25px;
     @media (max-width: 700px) {
       position: static;
@@ -216,9 +216,9 @@
 
   &__throne {
     position: absolute;
-    width: 110px;
-    top: -90px;
-    left: -5px;
+    width: 140px;
+    top: -135px;
+    left: -25px;
     @media (max-width: 700px) {
       top: -50px;
       left: -11px;
@@ -252,13 +252,47 @@
   }
 }
 
-@keyframes spin {
-  0% {
-    opacity: 0;
+// Animate.css
+
+@keyframes bounce {
+  from {
     transform: rotate(0deg);
   }
-  100% {
-    opacity: 1;
-    transform: rotate(1800deg);
+  20%,
+  53%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    transform: rotate(-1800deg);
   }
+
+  40%,
+  43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -15px, 0);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.bounce {
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
 }

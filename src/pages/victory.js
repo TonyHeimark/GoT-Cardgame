@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import IronThrone from '../components/ironThrone';
 
-const Victory = () => {
+const Victory = props => {
   const [player1, setPlayer1, player2, setPlayer2] = useContext(PlayerContext);
 
   const [redirect, setRedirect] = useState(false);

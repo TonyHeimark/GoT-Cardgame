@@ -4,12 +4,10 @@ import CharSelect from '../pages/charSelect';
 import Victory from '../pages/victory';
 import Board from '../pages/board';
 import Layout from '../components/layout';
-import Header from '../components/header';
 
 const AppRouter = () => (
   <BrowserRouter>
     <div>
-      <Header />
       <Switch>
         <Layout>
           <Route path="/" component={CharSelect} exact={true} />

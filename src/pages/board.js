@@ -39,7 +39,10 @@ const Board = props => {
   const [buttonOneClicked, setButtonOneClicked] = useState(false);
   const [buttonTwoClicked, setButtonTwoClicked] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalText, setModalText] = useState('');
+  const [modalContent, setmodalContent] = useState({
+    modalText: '',
+    modalImg: null
+  });
   const [confirmedTileEffect, setConfirmedTileEffect] = useState(false);
 
   const player1Tile = player1.tile;
@@ -98,10 +101,10 @@ const Board = props => {
   };
 
   //handle modal and confirmed tileEffect
-  const handleModal = modalText => {
+  const handleModal = (modalText, modalImg) => {
     if (!isModalOpen) {
       setIsModalOpen(true);
-      setModalText(modalText);
+      setmodalContent({ modalText: modalText, modalImg: modalImg });
     } else if (isModalOpen) {
       setIsModalOpen(false);
       setConfirmedTileEffect(true);
@@ -115,7 +118,11 @@ const Board = props => {
   const tilesGenerator = () => {
     for (let i = 1; i <= 30; i++) {
       let tile = (
-        <div className="board__tile" key={i}>
+        <div
+          className={`board__tile board__tile${i}`}
+          style={{ gridArea: `tile${i}` }}
+          key={i}
+        >
           <span className="board__tilenr">{i}</span>
           {i === trapTiles[0] ||
           i === trapTiles[1] ||
@@ -212,7 +219,8 @@ const Board = props => {
             }));
           } else {
             handleModal(
-              `A dwarf bought your horse for a future favor and mentioned something about always paying his depts. Anyway, move back 2 steps player 1`
+              `A dwarf bought your horse for a future favor and mentioned something about always paying his depts. Anyway, move back 2 steps player 1`,
+              tyrionHead
             );
           }
         } else if (player1Tile === trapTiles[1]) {
@@ -223,7 +231,8 @@ const Board = props => {
             }));
           } else {
             handleModal(
-              `To cross the bridge you have to marry one of Walder Frey's daughters, during the wedding something bad happens and you run back 3 steps player 1`
+              `To cross the bridge you have to marry one of Walder Frey's daughters, during the wedding something bad happens and you run back 3 steps player 1`,
+              bridge
             );
           }
         } else if (player1Tile === trapTiles[2]) {
@@ -234,7 +243,8 @@ const Board = props => {
             }));
           } else {
             handleModal(
-              `You spot a blue dragon in the distance, it's probably best to take a different route.. go back 4 steps player 1`
+              `You spot a blue dragon in the distance, it's probably best to take a different route.. go back 4 steps player 1`,
+              dragon
             );
           }
         } else if (player1Tile === trapTiles[3]) {
@@ -245,7 +255,8 @@ const Board = props => {
             }));
           } else {
             handleModal(
-              `You recieved an important raven from Winterfell, return at once player 1!`
+              `You recieved an important raven from Winterfell, return at once player 1!`,
+              raven
             );
           }
         } else if (player1Tile === trapTiles[4]) {
@@ -256,7 +267,8 @@ const Board = props => {
             }));
           } else {
             handleModal(
-              `Soldiers have spotted you trying to enter The Red Keep, they chased you back 10 steps player 1`
+              `Soldiers have spotted you trying to enter The Red Keep, they chased you back 10 steps player 1`,
+              guard
             );
           }
         } else if (player1Tile === ladderTiles[0]) {
@@ -267,7 +279,8 @@ const Board = props => {
             }));
           } else {
             handleModal(
-              `You won some gold in a game of Cyvasse, you spent it all on transportation and can now move 12 steps forward player 1`
+              `You won some gold in a game of Cyvasse, you spent it all on transportation and can now move 12 steps forward player 1`,
+              horse
             );
           }
         } else if (player1Tile === ladderTiles[1]) {
@@ -278,7 +291,8 @@ const Board = props => {
             }));
           } else {
             handleModal(
-              `You came across a wild dire wolf, turns out he's a good boy and he protects you while moving forward 4 steps player 1`
+              `You came across a wild dire wolf, turns out he's a good boy and he protects you while moving forward 4 steps player 1`,
+              wolf
             );
           }
         } else if (player1Tile === ladderTiles[2]) {
@@ -289,7 +303,8 @@ const Board = props => {
             }));
           } else {
             handleModal(
-              `You meet the dwarf that owes you a favor, he sneakes you past the guards and into The Red Keep undetected, move forward 6 steps player 1`
+              `You meet the dwarf that owes you a favor, he sneakes you past the guards and into The Red Keep undetected, move forward 6 steps player 1`,
+              tyrionHead
             );
           }
         }
@@ -306,69 +321,101 @@ const Board = props => {
         player2Tile === ladderTiles[2]
       ) {
         if (player2Tile === trapTiles[0]) {
-          alert(
-            `A dwarf bought your horse for a future favor and mentioned something about always paying his depts. Anyway, move back 2 steps player 2`
-          );
-          setPlayer2(prevState => ({
-            ...prevState,
-            tile: player2.tile - 2
-          }));
+          if (confirmedTileEffect) {
+            setPlayer2(prevState => ({
+              ...prevState,
+              tile: player2.tile - 2
+            }));
+          } else {
+            handleModal(
+              `A dwarf bought your horse for a future favor and mentioned something about always paying his depts. Anyway, move back 2 steps player 2`,
+              tyrionHead
+            );
+          }
         } else if (player2Tile === trapTiles[1]) {
-          alert(
-            `To cross the bridge you have to marry one of Walder Frey's daughters, during the wedding something bad happens and you run back 3 steps player 2`
-          );
-          setPlayer2(prevState => ({
-            ...prevState,
-            tile: player2.tile - 3
-          }));
+          if (confirmedTileEffect) {
+            setPlayer2(prevState => ({
+              ...prevState,
+              tile: player2.tile - 3
+            }));
+          } else {
+            handleModal(
+              `To cross the bridge you have to marry one of Walder Frey's daughters, during the wedding something bad happens and you run back 3 steps player 2`,
+              bridge
+            );
+          }
         } else if (player2Tile === trapTiles[2]) {
-          alert(
-            `You spot a blue dragon in the distance, it's probably best to take a different route.. go back 4 steps player 2`
-          );
-          setPlayer2(prevState => ({
-            ...prevState,
-            tile: player2.tile - 4
-          }));
+          if (confirmedTileEffect) {
+            setPlayer2(prevState => ({
+              ...prevState,
+              tile: player2.tile - 4
+            }));
+          } else {
+            handleModal(
+              `You spot a blue dragon in the distance, it's probably best to take a different route.. go back 4 steps player 2`,
+              dragon
+            );
+          }
         } else if (player2Tile === trapTiles[3]) {
-          alert(
-            `You recieved an important raven from Winterfell, return at once player 2!`
-          );
-          setPlayer2(prevState => ({
-            ...prevState,
-            tile: 1
-          }));
+          if (confirmedTileEffect) {
+            setPlayer2(prevState => ({
+              ...prevState,
+              tile: 1
+            }));
+          } else {
+            handleModal(
+              `You recieved an important raven from Winterfell, return at once player 2!`,
+              raven
+            );
+          }
         } else if (player2Tile === trapTiles[4]) {
-          alert(
-            `Soldiers have spotted you trying to enter The Red Keep, they chased you back 10 steps player 2`
-          );
-          setPlayer2(prevState => ({
-            ...prevState,
-            tile: player2.tile - 10
-          }));
+          if (confirmedTileEffect) {
+            setPlayer2(prevState => ({
+              ...prevState,
+              tile: player2.tile - 10
+            }));
+          } else {
+            handleModal(
+              `Soldiers have spotted you trying to enter The Red Keep, they chased you back 10 steps player 2`,
+              guard
+            );
+          }
         } else if (player2Tile === ladderTiles[0]) {
-          alert(
-            `You won some gold in a game of Cyvasse, you spent it all on transportation and can now move 12 steps forward player 2`
-          );
-          setPlayer2(prevState => ({
-            ...prevState,
-            tile: player2.tile + 12
-          }));
+          if (confirmedTileEffect) {
+            setPlayer2(prevState => ({
+              ...prevState,
+              tile: player2.tile + 12
+            }));
+          } else {
+            handleModal(
+              `You won some gold in a game of Cyvasse, you spent it all on transportation and can now move 12 steps forward player 2`,
+              horse
+            );
+          }
         } else if (player2Tile === ladderTiles[1]) {
-          alert(
-            `You came across a wild dire wolf, turns out he's a good boy and he protects you while moving forward 4 steps player 2`
-          );
-          setPlayer2(prevState => ({
-            ...prevState,
-            tile: player2.tile + 4
-          }));
+          if (confirmedTileEffect) {
+            setPlayer2(prevState => ({
+              ...prevState,
+              tile: player2.tile + 4
+            }));
+          } else {
+            handleModal(
+              `You came across a wild dire wolf, turns out he's a good boy and he protects you while moving forward 4 steps player 2`,
+              wolf
+            );
+          }
         } else if (player2Tile === ladderTiles[2]) {
-          alert(
-            `You meet the dwarf that owes you a favor, he sneakes you past the guards and into The Red Keep undetected, move forward 6 steps player 2`
-          );
-          setPlayer2(prevState => ({
-            ...prevState,
-            tile: player2.tile + 6
-          }));
+          if (confirmedTileEffect) {
+            setPlayer2(prevState => ({
+              ...prevState,
+              tile: player2.tile + 6
+            }));
+          } else {
+            handleModal(
+              `You meet the dwarf that owes you a favor, he sneakes you past the guards and into The Red Keep undetected, move forward 6 steps player 2`,
+              tyrionHead
+            );
+          }
         }
       }
 
@@ -402,7 +449,7 @@ const Board = props => {
   return (
     <>
       {isModalOpen ? (
-        <BoardModal modalText={modalText} handleModal={handleModal} />
+        <BoardModal modalContent={modalContent} handleModal={handleModal} />
       ) : null}
       {player1.victory || player2.victory ? (
         <Redirect push to="/victory" />
@@ -415,7 +462,9 @@ const Board = props => {
               {diceState === 1 ? (
                 <img
                   className="board__dice-img"
-                  style={{ animation: `spin 1s` }}
+                  style={{
+                    animation: `bounce 1s`
+                  }}
                   src={dice1}
                   alt="dice"
                 />
@@ -423,7 +472,9 @@ const Board = props => {
               {diceState === 2 ? (
                 <img
                   className="board__dice-img"
-                  style={{ animation: `spin 1s` }}
+                  style={{
+                    animation: `bounce 1s`
+                  }}
                   src={dice2}
                   alt="dice"
                 />
@@ -431,7 +482,9 @@ const Board = props => {
               {diceState === 3 ? (
                 <img
                   className="board__dice-img"
-                  style={{ animation: `spin 1s` }}
+                  style={{
+                    animation: `bounce 1s`
+                  }}
                   src={dice3}
                   alt="dice"
                 />
@@ -439,7 +492,9 @@ const Board = props => {
               {diceState === 4 ? (
                 <img
                   className="board__dice-img"
-                  style={{ animation: `spin 1s` }}
+                  style={{
+                    animation: `bounce 1s`
+                  }}
                   src={dice4}
                   alt="dice"
                 />
@@ -447,7 +502,9 @@ const Board = props => {
               {diceState === 5 ? (
                 <img
                   className="board__dice-img"
-                  style={{ animation: `spin 1s` }}
+                  style={{
+                    animation: `bounce 1s`
+                  }}
                   src={dice5}
                   alt="dice"
                 />
@@ -455,7 +512,9 @@ const Board = props => {
               {diceState === 6 ? (
                 <img
                   className="board__dice-img"
-                  style={{ animation: `spin 1s` }}
+                  style={{
+                    animation: `bounce 1s`
+                  }}
                   src={dice6}
                   alt="dice"
                 />
