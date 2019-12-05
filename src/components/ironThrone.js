@@ -3,7 +3,6 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Canvas, extend, useThree, useRender } from 'react-three-fiber';
 import { FadeLoader } from 'react-spinners';
-import { css } from '@emotion/core';
 
 extend({ OrbitControls });
 let loading = null;

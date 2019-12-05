@@ -16,7 +16,7 @@
     right: 0;
     left: 0;
     height: 100%;
-    min-height: 200vh;
+    min-height: 100vh;
     background: #2a2a2af1;
   }
 
@@ -24,12 +24,12 @@
     position: absolute;
     z-index: 8;
     width: 100%;
-    left: calc(50vw - 300px);
+    left: calc(50vw - 250px);
     background: url('../../assets/images/SVG/cardFrame2.svg') no-repeat;
     background-size: contain;
     margin: 50px;
-    min-height: 700px;
-    max-width: 500px;
+    min-height: 600px;
+    max-width: 400px;
     box-sizing: border-box;
   }
 
@@ -41,8 +41,8 @@
   }
 
   &__img {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     display: block;
     margin: 0 auto;
   }
@@ -59,7 +59,7 @@
     border: none;
     position: absolute;
     bottom: 0;
-    left: 130px;
+    left: 80px;
     cursor: pointer;
   }
 

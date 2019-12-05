@@ -1,7 +1,7 @@
 .board {
   padding: 50px 4%;
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 160px);
   background: #2a2a2a;
   background: url('../../assets/images/fire.jpg') no-repeat;
   background-size: cover;

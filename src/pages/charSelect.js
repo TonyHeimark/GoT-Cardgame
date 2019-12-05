@@ -10,7 +10,6 @@ import margaery from '../assets/images/SVG/margaery.svg';
 import worm from '../assets/images/SVG/worm.svg';
 import varys from '../assets/images/SVG/varys.svg';
 import petyr from '../assets/images/SVG/petyr.svg';
-import melisandre from '../assets/images/SVG/melisandre.svg';
 import syrio from '../assets/images/SVG/syrio.svg';
 
 const CharSelect = props => {
@@ -40,10 +39,7 @@ const CharSelect = props => {
       lastName: 'Baelish',
       charImg: petyr
     },
-    {
-      firstName: 'Melisandre',
-      charImg: melisandre
-    },
+
     {
       firstName: 'Margaery',
       lastName: 'Tyrell',
