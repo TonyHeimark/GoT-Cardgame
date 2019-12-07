@@ -108,17 +108,11 @@
 
   @keyframes beacon {
     0% {
-      width: 100px;
-      height: 100px;
     }
     50% {
       border-color: rgba(204, 49, 49, 0);
-      width: 110px;
-      height: 110px;
     }
     100% {
-      width: 100px;
-      height: 100px;
     }
   }
 }
