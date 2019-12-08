@@ -5,20 +5,19 @@ import { Canvas, extend, useThree, useRender } from 'react-three-fiber';
 import { FadeLoader } from 'react-spinners';
 
 extend({ OrbitControls });
-let loading = null;
 
-const ThroneModel = () => {
+const ThroneModel = props => {
   const [model, setModel] = useState();
   useEffect(() => {
     new GLTFLoader().load(
       '/throne/scene.gltf',
       gltf => {
-        setModel(gltf);
-        loading = false;
+        //console.log(props.isLoading);
+        setTimeout(() => {
+          setModel(gltf);
+        }, 7500);
       },
-      xhr => {
-        loading = true;
-      }
+      xhr => {}
     );
   }, []);
 
@@ -46,20 +45,36 @@ const Controls = () => {
 };
 
 const IronThrone = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 7500);
+  });
+
   const checkBrowser = typeof window !== 'undefined';
+  console.log(isLoading);
 
   return (
     <>
-      {checkBrowser && !loading ? (
-        <Canvas camera={{ position: [1, 1, 3] }}>
+      {isLoading && (
+        <div className="victory__loader">
+          <FadeLoader sizeUnit={'px'} size={100} color={'#fff'} />
+        </div>
+      )}
+      {checkBrowser && (
+        <Canvas
+          className={
+            isLoading
+              ? 'victory__canvas-container--hidden'
+              : 'victory__canvas-container--show'
+          }
+          camera={{ position: [1, 1, 3] }}
+        >
           <ambientLight intensity={3.5} />
           <Controls />
           <ThroneModel />
         </Canvas>
-      ) : (
-        <div className="victory__loader">
-          <FadeLoader sizeUnit={'px'} size={100} color={'#fff'} />
-        </div>
       )}
     </>
   );

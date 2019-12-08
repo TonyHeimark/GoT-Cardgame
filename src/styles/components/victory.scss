@@ -28,6 +28,20 @@
     line-height: 50px;
   }
 
+  &__canvas-container--hidden {
+    canvas {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &__canvas-container--show {
+    canvas {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
   &__canvas {
     height: calc(130vh);
     max-width: 500px;
@@ -51,7 +65,7 @@
   }
 
   &__loader {
-    display: block;
     margin: 50%;
+    z-index: 99;
   }
 }
