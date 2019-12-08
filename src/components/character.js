@@ -5,9 +5,6 @@ import UIfx from 'uifx';
 
 import selectAudio from '../assets/music/select.mp3';
 
-import house1 from '../assets/images/SVG/house1.svg';
-import house2 from '../assets/images/SVG/house2.svg';
-
 const Character = props => {
   const selectSound = new UIfx(selectAudio);
   const character = props.item;
@@ -20,6 +17,7 @@ const Character = props => {
 
   const handleSelect = () => {
     selectSound.play();
+    selectSound.volume = 0.2;
     if (player1.turn) {
       setPlayer1(prevState => ({
         ...prevState,

@@ -72,6 +72,7 @@ const Board = props => {
   const handleDice = () => {
     dice = Math.floor(Math.random() * 6) + 1;
     diceSound.play();
+    diceSound.volume = 0.5;
     setDiceState(dice);
     setTimeout(() => {
       handlePlayerMovement();
